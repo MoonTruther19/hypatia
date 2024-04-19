@@ -25,6 +25,7 @@
 #define POINT_TO_POINT_LASER_NET_DEVICE_H
 
 #include <cstring>
+#include <vector>
 #include "ns3/address.h"
 #include "ns3/node.h"
 #include "ns3/net-device.h"
@@ -38,7 +39,6 @@
 
 namespace ns3 {
 
-template <typename Item> class Queue;
 class PointToPointLaserChannel;
 class ErrorModel;
 
@@ -112,14 +112,14 @@ public:
    *
    * \param queue Ptr to the new queue.
    */
-  void SetQueue (Ptr<Queue<Packet> > queue);
+  void SetQueue (Ptr<Queue<Packet, std::vector<Packet>>> queue);
 
   /**
    * Get a copy of the attached Queue.
    *
    * \returns Ptr to the queue.
    */
-  Ptr<Queue<Packet> > GetQueue (void) const;
+  Ptr<Queue<Packet, std::vector<Packet>>> GetQueue (void) const;
 
   /**
    * Attach a receive ErrorModel to the PointToPointLaserNetDevice.
@@ -316,7 +316,7 @@ private:
    * and it has the responsibility for deletion.
    * \see class DropTailQueue
    */
-  Ptr<Queue<Packet> > m_queue;
+  Ptr<Queue<Packet, std::vector<Packet>>> m_queue;
 
   /**
    * Error model for receive packet events
