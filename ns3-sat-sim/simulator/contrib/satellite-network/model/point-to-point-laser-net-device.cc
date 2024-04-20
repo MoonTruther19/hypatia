@@ -23,8 +23,8 @@
 
 
 #include "ns3/log.h"
-#include "ns3/queue.h"
 #include "ns3/simulator.h"
+#include "ns3/queue.h"
 #include "ns3/mac48-address.h"
 #include "ns3/llc-snap-header.h"
 #include "ns3/error-model.h"
@@ -32,6 +32,7 @@
 #include "ns3/uinteger.h"
 #include "ns3/pointer.h"
 #include "ns3/ppp-header.h"
+#include "ns3/queue.h"
 #include "point-to-point-laser-net-device.h"
 #include "point-to-point-laser-channel.h"
 
@@ -82,7 +83,7 @@ PointToPointLaserNetDevice::GetTypeId (void)
                    "A queue to use as the transmit queue in the device.",
                    PointerValue (),
                    MakePointerAccessor (&PointToPointLaserNetDevice::m_queue),
-                   MakePointerChecker<Queue<Packet, std::vector<Packet>> > ())
+                   MakePointerChecker<Queue<Packet>> ())
 
     //
     // Trace sources at the "top" of the net device, where packets transition
@@ -323,7 +324,7 @@ PointToPointLaserNetDevice::Attach (Ptr<PointToPointLaserChannel> ch)
 }
 
 void
-PointToPointLaserNetDevice::SetQueue (Ptr<Queue<Packet, std::vector<Packet>>> q)
+PointToPointLaserNetDevice::SetQueue (Ptr<Queue<Packet>> q)
 {
   NS_LOG_FUNCTION (this << q);
   m_queue = q;
@@ -386,7 +387,7 @@ PointToPointLaserNetDevice::Receive (Ptr<Packet> packet)
     }
 }
 
-Ptr<Queue<Packet, std::vector<Packet>>>
+Ptr<Queue<Packet>>
 PointToPointLaserNetDevice::GetQueue (void) const
 { 
   NS_LOG_FUNCTION (this);

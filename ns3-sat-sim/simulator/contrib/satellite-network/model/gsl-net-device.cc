@@ -82,7 +82,7 @@ GSLNetDevice::GetTypeId (void)
                    "A queue to use as the transmit queue in the device.",
                    PointerValue (),
                    MakePointerAccessor (&GSLNetDevice::m_queue),
-                   MakePointerChecker<Queue<Packet, std::vector<Packet>> > ())
+                   MakePointerChecker<Queue<Packet>> ())
 
     //
     // Trace sources at the "top" of the net device, where packets transition
@@ -328,7 +328,7 @@ GSLNetDevice::Attach (Ptr<GSLChannel> ch)
 }
 
 void
-GSLNetDevice::SetQueue (Ptr<Queue<Packet, std::vector<Packet>> > q)
+GSLNetDevice::SetQueue (Ptr<Queue<Packet> > q)
 {
   NS_LOG_FUNCTION (this << q);
   m_queue = q;
@@ -395,7 +395,7 @@ GSLNetDevice::Receive (Ptr<Packet> packet)
     }
 }
 
-Ptr<Queue<Packet, std::vector<Packet>> >
+Ptr<Queue<Packet>>
 GSLNetDevice::GetQueue (void) const
 { 
   NS_LOG_FUNCTION (this);

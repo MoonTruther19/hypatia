@@ -7,6 +7,7 @@
 #include "ns3/ipv4-arbiter-routing-helper.h"
 #include "ns3/traffic-control-layer.h"
 #include "ns3/fq-codel-queue-disc.h"
+#include "ns3/queue.h"
 
 using namespace ns3;
 
@@ -244,7 +245,7 @@ public:
                 if ((link.first * 2 + link.second * 7) % 3 == 0) {
                     // fq_codel_better_rtt
                     Ptr<FqCoDelQueueDisc> realDisc = queueDisc->GetObject<FqCoDelQueueDisc>();
-                    ASSERT_NOT_EQUAL(realDisc, 0);
+                    ASSERT_NOT_EQUAL(!realDisc, 1);
 
                     // Improved interval (= RTT estimate)
                     StringValue interval_att;
@@ -258,11 +259,11 @@ public:
 
                 } else if ((link.first * 2 + link.second * 7) % 3 == 1) {
                     // default (currently, fq codel is default)
-                    ASSERT_NOT_EQUAL(queueDisc->GetObject<FqCoDelQueueDisc>(), 0);
+                    ASSERT_NOT_EQUAL(!queueDisc->GetObject<FqCoDelQueueDisc>(), 1);
 
                 } else {
                     // disabled
-                    ASSERT_EQUAL(queueDisc, 0);
+                    ASSERT_EQUAL(!queueDisc, 1);
                 }
 
                 // Check if the node identifiers here and on the other side match up

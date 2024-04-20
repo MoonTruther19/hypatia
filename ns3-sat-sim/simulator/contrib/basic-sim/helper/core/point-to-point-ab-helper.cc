@@ -93,14 +93,14 @@ namespace ns3 {
         Ptr <PointToPointNetDevice> devA = m_deviceFactoryA.Create<PointToPointNetDevice>();
         devA->SetAddress(Mac48Address::Allocate());
         a->AddDevice(devA);
-        Ptr <Queue<Packet>> queueA = m_queueFactoryA.Create < Queue < Packet > > ();
+        Ptr <Queue<Packet>> queueA = m_queueFactoryA.Create<Queue<Packet>> ();
         devA->SetQueue(queueA);
 
         // Network device B
         Ptr <PointToPointNetDevice> devB = m_deviceFactoryB.Create<PointToPointNetDevice>();
         devB->SetAddress(Mac48Address::Allocate());
         b->AddDevice(devB);
-        Ptr <Queue<Packet>> queueB = m_queueFactoryB.Create < Queue < Packet > > ();
+        Ptr <Queue<Packet>> queueB = m_queueFactoryB.Create<Queue<Packet>> ();
         devB->SetQueue(queueB);
 
         // Aggregate NetDeviceQueueInterface objects

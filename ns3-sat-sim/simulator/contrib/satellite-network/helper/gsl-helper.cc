@@ -41,8 +41,6 @@
 #include "ns3/trace-helper.h"
 #include "ns3/gsl-helper.h"
 
-#include <vector>
-
 namespace ns3 {
 
 NS_LOG_COMPONENT_DEFINE ("GSLHelper");
@@ -137,7 +135,7 @@ GSLHelper::Install (Ptr<Node> node, Ptr<GSLChannel> channel) {
     node->AddDevice (dev);
 
     // Set device queue
-    Ptr<Queue<Packet, std::vector<ns3::Packet>> > queue = m_queueFactory.Create<Queue<Packet, std::vector<ns3::Packet>>>();
+    Ptr<Queue<Packet>> queue = m_queueFactory.Create<Queue<Packet>>();
     dev->SetQueue (queue);
 
     // Aggregate NetDeviceQueueInterface objects to connect

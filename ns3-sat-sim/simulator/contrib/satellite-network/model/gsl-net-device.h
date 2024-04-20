@@ -38,10 +38,10 @@
 #include "ns3/ptr.h"
 #include "ns3/mac48-address.h"
 #include "ns3/node-container.h"
+#include "ns3/queue.h"
 
 namespace ns3 {
 
-template <typename Item, typename Container> class Queue;
 class GSLChannel;
 class ErrorModel;
 
@@ -114,14 +114,14 @@ public:
    *
    * \param queue Ptr to the new queue.
    */
-  void SetQueue (Ptr<Queue<Packet, std::vector<Packet>> > queue);
+  void SetQueue (Ptr<Queue<Packet> > queue);
 
   /**
    * Get a copy of the attached Queue.
    *
    * \returns Ptr to the queue.
    */
-  Ptr<Queue<Packet, std::vector<Packet>> > GetQueue (void) const;
+  Ptr<Queue<Packet> > GetQueue (void) const;
 
   /**
    * Attach a receive ErrorModel to the GSLNetDevice.
@@ -310,7 +310,7 @@ private:
    * and it has the responsibility for deletion.
    * \see class DropTailQueue
    */
-  Ptr<Queue<Packet, std::vector<Packet>> > m_queue;
+  Ptr<Queue<Packet>> m_queue;
 
     /**
      * The FIFO queue for the destination MAC addresses

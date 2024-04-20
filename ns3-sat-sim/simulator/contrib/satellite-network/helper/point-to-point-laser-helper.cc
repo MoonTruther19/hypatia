@@ -28,7 +28,6 @@
 #include "ns3/point-to-point-laser-net-device.h"
 #include "ns3/point-to-point-laser-channel.h"
 #include "ns3/point-to-point-laser-remote-channel.h"
-#include "ns3/queue.h"
 #include "ns3/net-device-queue-interface.h"
 #include "ns3/config.h"
 #include "ns3/packet.h"
@@ -36,11 +35,10 @@
 #include "ns3/string.h"
 #include "ns3/mpi-interface.h"
 #include "ns3/mpi-receiver.h"
+#include "ns3/queue.h"
 
 #include "ns3/trace-helper.h"
 #include "point-to-point-laser-helper.h"
-
-#include <vector>
 
 namespace ns3 {
 
@@ -108,13 +106,13 @@ PointToPointLaserHelper::Install (Ptr<Node> a, Ptr<Node> b)
   devA->SetAddress (Mac48Address::Allocate ());
   devA->SetDestinationNode(b);
   a->AddDevice (devA);
-  Ptr<Queue<Packet, std::vector<ns3::Packet>> > queueA = m_queueFactory.Create<Queue<Packet, std::vector<ns3::Packet>> > ();
+  Ptr<Queue<Packet> > queueA = m_queueFactory.Create<Queue<Packet> > ();
   devA->SetQueue (queueA);
   Ptr<PointToPointLaserNetDevice> devB = m_deviceFactory.Create<PointToPointLaserNetDevice> ();
   devB->SetAddress (Mac48Address::Allocate ());
   devB->SetDestinationNode(a);
   b->AddDevice (devB);
-  Ptr<Queue<Packet, std::vector<ns3::Packet>> > queueB = m_queueFactory.Create<Queue<Packet, std::vector<ns3::Packet>> > ();
+  Ptr<Queue<Packet> > queueB = m_queueFactory.Create<Queue<Packet> > ();
   devB->SetQueue (queueB);
 
   // Aggregate NetDeviceQueueInterface objects
