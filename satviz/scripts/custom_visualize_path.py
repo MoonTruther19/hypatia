@@ -93,7 +93,7 @@ GEN_TIME=10000  #ms
 
 # Output directory for creating visualization html files
 OUT_DIR = "../viz_output/"
-OUT_HTML_FILE = OUT_DIR + NAME + "_path"
+OUT_HTML_FILE = OUT_DIR + "cesium-webpack-example/webpack-5/src/index.js"
 
 sat_objs = []
 city_details = {}
@@ -136,7 +136,6 @@ def generate_path_at_time(file):
     """
     viz_string = ""
     global paths_over_time
-    global OUT_HTML_FILE
     lines = [line.rstrip('\n') for line in open(file)]
     for i in range(len(lines)):
         val = lines[i].split(",")
@@ -163,7 +162,6 @@ def generate_path_at_time(file):
         if p == 0:
             GS = int(SEL_PATH[p]) - NUM_ORBS*NUM_SATS_PER_ORB
             print(city_details[GS]["name"])
-            OUT_HTML_FILE += "_"+city_details[GS]["name"] + "_" +str(SEL_PATH[p])
             viz_string += "var redSphere = viewer.entities.add({name : '', position: Cartesian3.fromDegrees(" \
                           + str(city_details[GS]["long_deg"]) + ", " \
                           + str(city_details[GS]["lat_deg"]) + ", " \
@@ -184,7 +182,6 @@ def generate_path_at_time(file):
         if p == len(SEL_PATH) - 1:
             GS = int(SEL_PATH[p]) - NUM_ORBS * NUM_SATS_PER_ORB
             print(city_details[GS]["name"])
-            OUT_HTML_FILE += "_" + city_details[GS]["name"] + "_" + str(SEL_PATH[p])
             viz_string += "var redSphere = viewer.entities.add({name : '', position: Cartesian3.fromDegrees(" \
                           + str(city_details[GS]["long_deg"]) + ", " \
                           + str(city_details[GS]["lat_deg"]) + ", " \
@@ -215,7 +212,6 @@ def generate_path_at_time(file):
                           + "material: new PolylineOutlineMaterialProperty({ "\
                           + "color: Color.RED.withAlpha(1.0), outlineWidth: 0, outlineColor: Color.BLACK})}});"
 
-    OUT_HTML_FILE += "_" + str(GEN_TIME) + ".html"
     return viz_string
 
 

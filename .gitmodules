@@ -1,0 +1,4 @@
+[submodule "satviz/viz_output/cesium-webpack-example"]
+	path = satviz/viz_output/cesium-webpack-example
+	url = https://github.com/CesiumGS/cesium-webpack-example.git
+	ignore = dirty
