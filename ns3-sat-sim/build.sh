@@ -1,4 +1,4 @@
-NS3_VERSION="ns-3.41"
+NS3_VERSION="ns-3.43"
 
 # Usage help
 if [ "$1" == "--help" ]; then
