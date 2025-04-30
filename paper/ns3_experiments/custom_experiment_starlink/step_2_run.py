@@ -29,8 +29,8 @@ for num_flows in [1, 2, 4, 8]:
         local_shell.make_full_dir(logs_ns3_dir)
         commands_to_run.append(
             "cd ../../../ns3-sat-sim/simulator; "
-            f"./ns3 run \"main_satnet --run_dir=../../paper/ns3_experiments/custom_experiment/{run_dir}\" "
-            f"2>&1 | tee '../../paper/ns3_experiments/custom_experiment/{logs_ns3_dir}/console.txt'"
+            f"./ns3 run \"main_satnet --run_dir=../../paper/ns3_experiments/custom_experiment_starlink/{run_dir}\" "
+            f"2>&1 | tee '../../paper/ns3_experiments/custom_experiment_starlink/{logs_ns3_dir}/console.txt'"
         )
 
 # Run the commands

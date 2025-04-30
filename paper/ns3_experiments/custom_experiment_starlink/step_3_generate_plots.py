@@ -51,9 +51,9 @@ def plot(folder, id):
     local_shell.perfect_exec(
         "cd ../../../ns3-sat-sim/simulator/contrib/basic-sim/tools/plotting/plot_tcp_flow; "
         "python plot_tcp_flow.py "
-        f"../../../../../../../paper/ns3_experiments/custom_experiment/runs/{folder}/logs_ns3 "
-        f"../../../../../../../paper/ns3_experiments/custom_experiment/data/{folder} "
-        f"../../../../../../../paper/ns3_experiments/custom_experiment/pdf/{folder} "
+        f"../../../../../../../paper/ns3_experiments/custom_experiment_starlink/runs/{folder}/logs_ns3 "
+        f"../../../../../../../paper/ns3_experiments/custom_experiment_starlink/data/{folder} "
+        f"../../../../../../../paper/ns3_experiments/custom_experiment_starlink/pdf/{folder} "
         f"{id} " + str(1 * 1000 * 1000 * 1000),  # 1s interval
         output_redirect=exputil.OutputRedirect.CONSOLE
     )
