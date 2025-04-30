@@ -41,9 +41,9 @@ local_shell.make_full_dir("data/command_logs")
 commands_to_run = []
 
 starlink = 1584
-city0 = starlink + 74
-city1 = starlink + 84
-city2 = starlink + 62
+city0 = starlink + 70
+city1 = starlink + 34
+city2 = starlink + 16
 
 # Manual
 print("Generating commands for manually selected endpoints pair (printing of routes and RTT over time)...")
@@ -72,6 +72,35 @@ commands_to_run.append("cd ../../satgenpy; python -m satgen.post_analysis.main_p
                        f"100 200 {city2} {city0} "
                        f"> ../paper/satgenpy_analysis/data/command_logs/manual_graphical_starlink_isls_{city2}_to_{city0}.log"
                        " 2>&1")
+
+# Kuiper
+kuiper = 1156 
+kuiper_city_a = kuiper + 70  
+kuiper_city_b = kuiper + 34
+kuiper_city_c = kuiper + 16
+
+commands_to_run.append("cd ../../satgenpy; python -m satgen.post_analysis.main_print_routes_and_rtt "
+                       "../paper/satgenpy_analysis/data ../paper/satellite_networks_state/gen_data/"
+                       "kuiper_630_isls_plus_grid_ground_stations_top_100_algorithm_free_one_only_over_isls "
+                       f"100 200 {kuiper_city_a} {kuiper_city_b} "
+                       f"> ../paper/satgenpy_analysis/data/command_logs/manual_kuiper_isls_{kuiper_city_a}_to_{kuiper_city_b}.log 2>&1")
+
+commands_to_run.append("cd ../../satgenpy; python -m satgen.post_analysis.main_print_graphical_routes_and_rtt "
+                       "../paper/satgenpy_analysis/data ../paper/satellite_networks_state/gen_data/"
+                       "kuiper_630_isls_plus_grid_ground_stations_top_100_algorithm_free_one_only_over_isls "
+                       f"100 200 {kuiper_city_a} {kuiper_city_b} "
+                       f"> ../paper/satgenpy_analysis/data/command_logs/manual_graphical_kuiper_isls_{kuiper_city_a}_to_{kuiper_city_b}.log 2>&1")
+
+commands_to_run.append("cd ../../satgenpy; python -m satgen.post_analysis.main_print_routes_and_rtt "
+                       "../paper/satgenpy_analysis/data ../paper/satellite_networks_state/gen_data/"
+                       "kuiper_630_isls_plus_grid_ground_stations_top_100_algorithm_free_one_only_over_isls "
+                       f"100 200 {kuiper_city_c} {kuiper_city_b} "
+                       f"> ../paper/satgenpy_analysis/data/command_logs/manual_kuiper_isls_{kuiper_city_c}_to_{kuiper_city_b}.log 2>&1")
+commands_to_run.append("cd ../../satgenpy; python -m satgen.post_analysis.main_print_graphical_routes_and_rtt "
+                       "../paper/satgenpy_analysis/data ../paper/satellite_networks_state/gen_data/"
+                       "kuiper_630_isls_plus_grid_ground_stations_top_100_algorithm_free_one_only_over_isls "
+                       f"100 200 {kuiper_city_c} {kuiper_city_b} "
+                       f"> ../paper/satgenpy_analysis/data/command_logs/manual_graphical_kuiper_isls_{kuiper_city_c}_to_{kuiper_city_b}.log 2>&1")
 
 # Run the commands
 print("Running commands (at most %d in parallel)..." % max_num_processes)
